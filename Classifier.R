@@ -1,56 +1,50 @@
 #File:Classifier.R
 
 
-mean.variance.frame <- as.data.frame(fromJSON(file = "MeanVariance.json"))
+mean.stdv.frame <- as.data.frame(fromJSON(file = "MeanStdDevCR.json"))
 
 #Vector of Functions for normal distribution
 danceProb <- function(danceValue){
-  pnorm(q=danceValue,
-        mean=mean.variance.frame$danceMean, 
-        sd=mean.variance.frame$danceVariance,
-        lower.tail = TRUE)
+  dnorm(x=danceValue,
+        mean=mean.stdv.frame$danceMean, 
+        sd=mean.stdv.frame$danceStdDev)
 }
 energyProb <- function(energyValue){
-  pnorm(q=danceValue,
-        mean=mean.variance.frame$energyMean, 
-        sd=mean.variance.frame$energyVariance,
-        lower.tail = TRUE)
+  dnorm(x=danceValue,
+        mean=mean.stdv.frame$energyMean, 
+        sd=mean.stdv.frame$energyStdDev)
 }
 loudnessProb <- function(loudnessValue){
-  pnorm(q=loudnessValue,
-        mean=mean.variance.frame$loudnessMean, 
-        sd=mean.variance.frame$loudnessVariance,
-        lower.tail = TRUE)
+  dnorm(x=loudnessValue,
+        mean=mean.stdv.frame$loudnessMean, 
+        sd=mean.stdv.frame$loudnessStdDev)
 } 
 speechinessProb <- function(speechinessValue){
-  pnorm(q=speechinessValue,
-        mean=mean.variance.frame$speechinessMean, 
-        sd=mean.variance.frame$speechinessVariance,
-        lower.tail = TRUE)
+  dnorm(x=speechinessValue,
+        mean=mean.stdv.frame$speechinessMean, 
+        sd=mean.stdv.frame$speechinessStdDev)
 } 
 acousticnessProb <- function(acousticnessValue){
-  pnorm(q=acousticnessValue,
-        mean=mean.variance.frame$acousticnessMean, 
-        sd=mean.variance.frame$acousticnessVariance,
-        lower.tail = TRUE)
+  dnorm(x=acousticnessValue,
+        mean=mean.stdv.frame$acousticnessMean, 
+        sd=mean.stdv.frame$acousticnessStdDev)
 } 
 livenessProb <- function(livenessValue){
-  pnorm(q=livenessValue,
-        mean=mean.variance.frame$livenessMean, 
-        sd=mean.variance.frame$livenessVariance,
-        lower.tail = TRUE)
+  dnorm(x=livenessValue,
+        mean=mean.stdv.frame$livenessMean, 
+        sd=mean.stdv.frame$livenessStdDev)
 } 
 valenceProb <- function(valenceValue){
-  pnorm(q=valenceValue,
-        mean=mean.variance.frame$valenceMean, 
-        sd=mean.variance.frame$valenceVariance,
-        lower.tail = TRUE)
+  dnorm(x=valenceValue,
+        mean=mean.stdv.frame$valenceMean, 
+        sd=mean.stdv.frame$valenceStdDev)
 }
 tempoProb <- function(tempoValue){
-  pnorm(q=tempoValue,
-        mean=mean.variance.frame$tempoMean, 
-        sd=mean.variance.frame$tempoVariance,
-        lower.tail = TRUE)
+  dnorm(x=tempoValue,
+        mean=mean.stdv.frame$tempoMean, 
+        sd=mean.stdv.frame$tempoStdDev)
 }
 
-print(tempoProb(1000))
+seqr <- seq(from=0,to=500,len=100)
+
+plot(seqr,tempoProb(seqr))

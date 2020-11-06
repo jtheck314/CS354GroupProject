@@ -34,23 +34,23 @@ for(song in result){
 # Create the data frame.
 dataTable.data <- data.frame(
     danceMean = mean(danceData),
-    danceVariance = var(danceData),
+    danceStdDev = sd(danceData),
     energyMean = mean(energyData),
-    energyVariance = var(energyData),
+    energyStdDev = sd(energyData),
     loudnessMean = mean(loudnessData),
-    loudnessVariance = var(loudnessData),
+    loudnessStdDev = sd(loudnessData),
     speechinessMean = mean(speechinessData),
-    speechinessVariance = var(speechinessData),
+    speechinessStdDev = sd(speechinessData),
     acousticnessMean = mean(acousticnessData),
-    acousticnessVariance = var(acousticnessData),
+    acousticnessStdDev = sd(acousticnessData),
     livenessMean = mean(livenessData),
-    livenessVariance = var(livenessData),
+    livenessStdDev = sd(livenessData),
     valenceMean = mean(valenceData),
-    valenceVariance = var(valenceData),
+    valenceStdDev = sd(valenceData),
     tempoMean = mean(tempoData),
-    tempoVariance = var(tempoData),
+    tempoStdDev = sd(tempoData),
     stringsAsFactors = FALSE
 )
 #paste(c(file, "Data", ".json"), collapse = "")
 
-write(rjson::toJSON(dataTable.data, ), file = "MeanVarianceCR.json")
+write(rjson::toJSON(dataTable.data, ), file = "MeanStdDevCR.json")
