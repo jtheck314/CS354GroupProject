@@ -51,6 +51,6 @@ dataTable.data <- data.frame(
     tempoVariance = var(tempoData),
     stringsAsFactors = FALSE
 )
+#paste(c(file, "Data", ".json"), collapse = "")
 
-
-write(toJSON(dataTable.data, ), paste(c(file, "Data", ".json"), collapse = ""))
+write(rjson::toJSON(dataTable.data, ), file = "MeanVarianceCR.json")
