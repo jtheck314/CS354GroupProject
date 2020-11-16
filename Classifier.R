@@ -6,53 +6,14 @@ mean.stdv.CR <- as.data.frame(fromJSON(file = "MeanStdDevCR.json"))
 mean.stdv.Country <- as.data.frame(fromJSON(file = "MeanStdDevCountry.json"))
 
 #All Prob functions find the likelihood of their parameter on the standard normal curve
-danceProb <- function(danceValue = 0.0){
-  dnorm(x=danceValue,
-        mean=0, 
-        sd=1)
-}
-
-energyProb <- function(energyValue = 0.0){
-  dnorm(x=danceValue,
-        mean=0, 
-        sd=1)
-}
-
-loudnessProb <- function(loudnessValue = 0.0){
-  dnorm(x=loudnessValue,
-        mean=0, 
-        sd=1)
-} 
-
-speechinessProb <- function(speechinessValue = 0.0){
-  dnorm(x=speechinessValue,
-        mean=0, 
-        sd=1)
-} 
-
-acousticnessProb <- function(acousticnessValue = 0.0){
-  dnorm(x=acousticnessValue,
-        mean=0, 
-        sd=1)
-} 
-
-livenessProb <- function(livenessValue = 0.0){
-  dnorm(x=livenessValue,
-        mean=0, 
-        sd=1)
-} 
-
-valenceProb <- function(valenceValue = 0.0){
-  dnorm(x=valenceValue,
-        mean=0, 
-        sd=1)
-}
-
-tempoProb <- function(tempoValue = 0.0){
-  dnorm(x=tempoValue,
-        mean=0, 
-        sd=1)
-}
+danceProb <- function(danceValue = 0.0){dnorm(x=danceValue,mean=0, sd=1)}
+energyProb <- function(energyValue = 0.0){dnorm(x=danceValue,mean=0, sd=1)}
+loudnessProb <- function(loudnessValue = 0.0){dnorm(x=loudnessValue,mean=0, sd=1)} 
+speechinessProb <- function(speechinessValue = 0.0){dnorm(x=speechinessValue,mean=0, sd=1)} 
+acousticnessProb <- function(acousticnessValue = 0.0){dnorm(x=acousticnessValue,mean=0, sd=1)} 
+livenessProb <- function(livenessValue = 0.0){dnorm(x=livenessValue,mean=0, sd=1)} 
+valenceProb <- function(valenceValue = 0.0){dnorm(x=valenceValue,mean=0, sd=1)}
+tempoProb <- function(tempoValue = 0.0){dnorm(x=tempoValue,mean=0, sd=1)}
 
 #Standardize the attributes of a Classic Rock song to the standard normal distribution
 stdAttrbCR <- function(song = NULL){
@@ -149,13 +110,9 @@ classify <- function(CRPrior = NULL, CountryPrior, song = NULL){
 }
 
 #MONTE TESTING THE CLASSIFIER
-songCR <- list(dance = .46,energy = .77,loudness = -8.0,speechiness = .069,
-          acousticness = .137,liveness = .295,valence = .46,tempo = 122.0)
-
-songCountry <- list(dance = .588,energy = .699,loudness = -5.74,speechiness = .045,
-               acousticness = .23,liveness = .166,valence = .544,tempo = 126.88)
-
-print(classify(CRPrior = .5,CountryPrior = .5,song = songCR))
-cat("\n")
-print(classify(CRPrior = .5,CountryPrior = .5,song = songCountry))
-
+# songCR <- list(dance = .46,energy = .77,loudness = -8.0,speechiness = .069,
+#           acousticness = .137,liveness = .295,valence = .46,tempo = 122.0)
+# 
+# songCountry <- list(dance = .588,energy = .699,loudness = -5.74,speechiness = .045,
+#                acousticness = .23,liveness = .166,valence = .544,tempo = 126.88)
+# 
