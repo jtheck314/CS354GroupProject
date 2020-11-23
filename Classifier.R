@@ -5,6 +5,8 @@ mean.stdv.CR <- as.data.frame(fromJSON(file = "MeanStdDevCR.json"))
 
 mean.stdv.Country <- as.data.frame(fromJSON(file = "MeanStdDevCountry.json"))
 
+mean.stdv.Classical <- as.data.frame(fromJSON(file = "MeanStdDevClassical.json"))
+
 #All Prob functions find the likelihood of their parameter on the standard normal curve
 danceProb <- function(danceValue = 0.0){dnorm(x=danceValue,mean=0, sd=1)}
 energyProb <- function(energyValue = 0.0){dnorm(x=danceValue,mean=0, sd=1)}
@@ -44,6 +46,22 @@ stdAttrbCountry <- function(song = NULL){
   song$liveness <- (song$liveness-mean.stdv.Country$livenessMean)/(mean.stdv.Country$livenessStdDev)
   song$valence <- (song$valence-mean.stdv.Country$valenceMean)/(mean.stdv.Country$valenceStdDev)
   song$tempo <- (song$tempo-mean.stdv.Country$tempoMean)/(mean.stdv.Country$tempoStdDev)
+  return(song)
+}
+
+#Standardize the attributes of a Classical song to the standard normal distribution
+stdAttrbClassical <- function(song = NULL){
+  if(is.null(song)){
+    return(NULL)
+  }
+  song$dance <- (song$dance-mean.stdv.Classical$danceMean)/(mean.stdv.Classical$danceStdDev)
+  song$energy <- (song$energy-mean.stdv.Classical$energyMean)/(mean.stdv.Classical$energyStdDev)
+  song$loudness <- (song$loudness-mean.stdv.Classical$loudnessMean)/(mean.stdv.Classical$loudnessStdDev)
+  song$speechiness <- (song$speechiness-mean.stdv.Classical$speechinessMean)/(mean.stdv.Classical$speechinessStdDev)
+  song$acousticness <- (song$acousticness-mean.stdv.Classical$acousticnessMean)/(mean.stdv.Classical$acousticnessStdDev)
+  song$liveness <- (song$liveness-mean.stdv.Classical$livenessMean)/(mean.stdv.Classical$livenessStdDev)
+  song$valence <- (song$valence-mean.stdv.Classical$valenceMean)/(mean.stdv.Classical$valenceStdDev)
+  song$tempo <- (song$tempo-mean.stdv.Classical$tempoMean)/(mean.stdv.Classical$tempoStdDev)
   return(song)
 }
 
@@ -91,21 +109,50 @@ classifyCountry <- function(CountryPrior = NULL,song = NULL){
   return(classifyValue)
 }
 
+#Returns the classifier value given the song is Classical
+classifyClassical <- function(ClassicalPrior = NULL,song = NULL){
+  if(is.null(song) | is.null(ClassicalPrior)){
+    return(0)
+  }
+  
+  classifyValue <- 0
+  song <- stdAttrbClassical(song)
+  if(!(is.null(song))){
+    classifyValue <- log(ClassicalPrior) +
+      log(danceProb(song$dance)) +
+      log(energyProb(song$energy)) +
+      log(loudnessProb(song$loudness)) +
+      log(speechinessProb(song$speechiness)) +
+      log(acousticnessProb(song$acousticness)) +
+      log(livenessProb(song$liveness)) +
+      log(valenceProb(song$valence)) +
+      log(tempoProb(song$tempo))
+  }
+  return(classifyValue)
+}
+
 #Returns the classifier's determination
-classify <- function(CRPrior = NULL, CountryPrior, song = NULL){
-  if(is.null(CRPrior) | is.null(CountryPrior) | is.null(song)){
+classify <- function(CRPrior = NULL, CountryPrior = NULL, ClassicalPrior = NULL, song = NULL){
+  if(is.null(CRPrior) | is.null(CountryPrior) | is.null(ClassicalPrior) | is.null(song)){
     return(-1)
   }
   CR.result <- classifyCR(CRPrior = CRPrior, song = song)
   Country.result <- classifyCountry(CountryPrior = CountryPrior, song = song)
+  Classical.result <- classifyClassical(ClassicalPrior = ClassicalPrior, song = song)
+  result.list <- c(CR.result,Country.result,Classical.result)
+  max.result <- max(result.list)
 
   selection.result <- NULL
-  if(CR.result > Country.result){
+  if(Country.result == max.result){
+    selection.result <- "Country"
+  }
+  else if(CR.result == max.result){
     selection.result <- "Classic Rock"
   }
   else{
-    selection.result <- "Country"
+    selection.result <- "Classical"
   }
+
   return(selection.result)
 }
 

@@ -10,7 +10,7 @@ classifier.acc.percent <- function(test.filename = NULL, playlist.genre = NULL){
   classifier.results <- c()
   
   for (song in resultCR){
-    classifier.results <- append(classifier.results, classify(CRPrior = .5,CountryPrior = .5, song = song))
+    classifier.results <- append(classifier.results, classify(CRPrior = (1/3),CountryPrior = (1/3),ClassicalPrior = (1/3), song = song))
     total.songs <- total.songs + 1
   }
   
@@ -24,5 +24,11 @@ classifier.acc.percent <- function(test.filename = NULL, playlist.genre = NULL){
   return((total.correct/total.songs) * 100)
 }
 
-my.test.filename <- "TestingCR.json"
-print(classifier.acc.percent(test.filename = my.test.filename,playlist.genre = "Classic Rock"))
+my.testCR.filename <- "TestingCR.json"
+print(classifier.acc.percent(test.filename = my.testCR.filename,playlist.genre = "Classic Rock"))
+
+my.testCountry.filename <- "TestingCountry.json"
+print(classifier.acc.percent(test.filename = my.testCountry.filename,playlist.genre = "Country"))
+
+my.testCountry.filename <- "TestingClassicdata.json"
+print(classifier.acc.percent(test.filename = my.testCountry.filename,playlist.genre = "Classical"))

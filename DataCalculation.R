@@ -3,11 +3,17 @@
 # Created by: donww
 # Created on: 11/1/2020
 
-fileCR <- "TestingCR"
-fileCountry <- "TestingCountry"
+# fileCR <- "TestingCR"
+# fileCountry <- "TestingCountry"
+# fileClassic <- "TestingClassicdata"
+
+fileCR <- "TrainingCR"
+fileCountry <- "TrainingCountry"
+fileClassic <- "TrainingClassicdata"
 
 resultCR <- rjson::fromJSON(file = paste(c(fileCR, ".json"), collapse = ""))
 resultCountry <- rjson::fromJSON(file = paste(c(fileCountry, ".json"), collapse = ""))
+resultClassical <- rjson::fromJSON(file = paste(c(fileClassic, ".json"), collapse = ""))
 
 danceData <- c()
 energyData <- c()
@@ -104,3 +110,51 @@ dataTable.data.Country <- data.frame(
 )
 
 write(rjson::toJSON(dataTable.data.Country, ), file = "MeanStdDevCountry.json")
+
+#Create MeanStdDevClassical.json
+danceData <- c()
+energyData <- c()
+loudnessData <- c()
+speechinessData <- c()
+acousticnessData <- c()
+livenessData <- c()
+valenceData <- c()
+tempoData <- c()
+
+len <- length(resultCR)
+
+for(song in resultClassical){
+  print(song$name)
+  danceData <- append(danceData, song$dance)
+  energyData <- append(energyData, song$energy)
+  loudnessData <- append(loudnessData, song$loudness)
+  speechinessData <- append(speechinessData, song$speechiness)
+  acousticnessData <- append(acousticnessData, song$acousticness)
+  livenessData <- append(livenessData, song$liveness)
+  valenceData <- append(valenceData, song$valence)
+  tempoData <- append(tempoData, song$tempo)
+}
+
+
+# create the data frame.
+dataTable.data.Classical <- data.frame(
+  danceMean = mean(danceData),
+  danceStdDev = sd(danceData),
+  energyMean = mean(energyData),
+  energyStdDev = sd(energyData),
+  loudnessMean = mean(loudnessData),
+  loudnessStdDev = sd(loudnessData),
+  speechinessMean = mean(speechinessData),
+  speechinessStdDev = sd(speechinessData),
+  acousticnessMean = mean(acousticnessData),
+  acousticnessStdDev = sd(acousticnessData),
+  livenessMean = mean(livenessData),
+  livenessStdDev = sd(livenessData),
+  valenceMean = mean(valenceData),
+  valenceStdDev = sd(valenceData),
+  tempoMean = mean(tempoData),
+  tempoStdDev = sd(tempoData),
+  stringsAsFactors = FALSE
+)
+
+write(rjson::toJSON(dataTable.data.Classical, ), file = "MeanStdDevClassical.json")
