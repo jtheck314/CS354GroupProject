@@ -1,6 +1,6 @@
-#Spotify Naive Bayes Classifier
+# Spotify Naive Bayes Classifier
 
-##File Structure
+## File Structure
 The 7 files below are included and needed to run this script.
 
 - ./runner.R
@@ -14,7 +14,7 @@ The 7 files below are included and needed to run this script.
 
 All these files can be found on our project's [Github Page](https://github.com/Donny208/CS354GroupProject/tree/main/Runner).
 
-##R Environment
+## R Environment
 Once you have all these files you will need to be able to run them. R can be difficult to run on a console, so 
 our group used the program RStudio which can be downloaded [here](https://rstudio.com/products/rstudio/download/).
 
@@ -34,5 +34,5 @@ run the runner.R program.
 6. The code should be running in the bottom left terminal if everything was installed correctly.
 ![Step 6](https://i.imgur.com/nFy06ps.png)
 
-##General Information
+## General Information
 The runner.R code has 2 functions: Grabbing a playlist and formatting it into a json file, and taking a song id, and predicting what genre it is based off our Naive Bayes Classifier.
