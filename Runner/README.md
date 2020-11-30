@@ -1,7 +1,7 @@
 # Spotify Naive Bayes Classifier
 
 ## File Structure
-The 7 files below are included and needed to run this script.
+The 7 files below are needed to run this script.
 
 - ./runner.R
 - ./playlistDataGrabber.R
