@@ -13,11 +13,14 @@ The 7 files below are needed to run this script.
 - ./README.md (not needed to run)
 
 All these files can be found on our project's [Github Page](https://github.com/Donny208/CS354GroupProject/tree/main/Runner).
+Download them and have them ready for the project setup.
 
 ## R Environment
 Once you have all these files you will need to be able to run them. R can be difficult to run on a console, so 
 our group used the program RStudio which can be downloaded [here](https://rstudio.com/products/rstudio/download/).
 
+
+## Project Setup
 Once the program is downloaded, create a project with the exact same file structure as listed above. Once you have done this, simply
 run the runner.R program.
 
