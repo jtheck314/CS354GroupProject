@@ -16,7 +16,7 @@ All these files can be found on our project's [Github Page](https://github.com/D
 Download them and have them ready for the project setup.
 
 ## R Environment
-Once you have all these files you will need to be able to run them. R can be difficult to run on a console, so 
+Once you have all these files, you will need to be able to run them. R can be difficult to run on a console, so 
 our group used the program RStudio which can be downloaded [here](https://rstudio.com/products/rstudio/download/).
 
 
@@ -30,9 +30,9 @@ run the runner.R program. Below is a step-by-step guide on how to do this setup 
 ![Step 2](https://i.imgur.com/VteWET9.png)
 3. Name the project "NBC", pick a location for the project, then click "Create Project".
 ![Step 3](https://i.imgur.com/qnbgjbY.png)
-4. Make sure all files you previously downloaded are in the project folder
+4. Make sure all files you previously downloaded are in the project folder.
 ![Step 4](https://i.imgur.com/J5ootQK.png)
-5. Open runner.R and in the top left click source
+5. Open runner.R and in the top left click source.
 ![Step 5](https://i.imgur.com/F77l9dg.png)
 6. The code should be running in the bottom left terminal if everything was installed correctly.
 ![Step 6](https://i.imgur.com/nFy06ps.png)
