@@ -21,7 +21,7 @@ get_track_analysis <- function(track, access_token){
   return(cont)
 }
 
-
+#This function will format the data for the Naive Bayes Classifier to accept.
 getSongDataAndFormat <- function (songID){
   access_token <- DSpoty::get_spotify_access_token()
 
