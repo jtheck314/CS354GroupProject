@@ -1,12 +1,13 @@
 Sys.setenv(client_id = 'b1d493d5a2dc49e7901d8ecb84fe7fb8')
 Sys.setenv(client_secret = '338d52ce3d5b4df680e14d2e4ff2e6db')
 
+#Libraries
 library(httr)
 library(stringr)
 library(DSpoty)
 library(jsonlite)
 
-
+#Variable setup
 dance <- c()
 energy <- c()
 key <- c()
@@ -20,6 +21,7 @@ tempo <- c()
 id <- c()
 name <- c()
 
+#This function will get the analysis for a spotify track given an ID
 get_track_analysis <- function(track, access_token){
   res <- GET(
     url = paste("https://api.spotify.com/v1/audio-features/", track, sep = ""),
@@ -32,7 +34,7 @@ get_track_analysis <- function(track, access_token){
   return(cont)
 }
 
-
+#This function will get the analysis for a back of spotify tracks given an ID
 get_tracks_analysis <- function(tracks, access_token){
   res <- GET(
     url = "https://api.spotify.com/v1/audio-features",
@@ -46,6 +48,7 @@ get_tracks_analysis <- function(tracks, access_token){
   return(cont$audio_features)
 }
 
+#This function will return all songs found in a playlist given the playlist ID
 get_playlist_tracks <- function(playlist_id, access_token, limit = 100, offset = 0){
   tracks <- list()
   res <- GET(
@@ -65,7 +68,7 @@ get_playlist_tracks <- function(playlist_id, access_token, limit = 100, offset =
 
 
 
-
+#This function will combine all top functions and create a json file with all songs from a given playlist.
 compileData <- function (playlistid, len, fileName){
   access_token <- DSpoty::get_spotify_access_token()
   print("Successfully Grabbed Access Token")
@@ -127,5 +130,3 @@ compileData <- function (playlistid, len, fileName){
 
   print("JSON File Successfully Made.")
 }
-
-#compileData("68KAZAxHvk1LgSYTRY9MJ5", 100, "ok.json")
