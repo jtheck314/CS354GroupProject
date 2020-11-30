@@ -35,4 +35,10 @@ run the runner.R program.
 ![Step 6](https://i.imgur.com/nFy06ps.png)
 
 ## General Information
-The runner.R code has 2 functions: Grabbing a playlist and formatting it into a json file, and taking a song id, and predicting what genre it is based off our Naive Bayes Classifier.
+- The runner.R code has 2 functions: Grabbing a playlist and formatting it into a json file, and taking a song id, and predicting what genre it is based off our Naive Bayes Classifier.
+- An issue might arise due to Spotify requiring an Authentication Token from their developer portal. We have supplied one in our code which should work, but if not you will have to 
+create one of these tokens on the [developer dashboard](https://developer.spotify.com/dashboard/applications/).
+The project should have the same structure as below.
+![DD](https://i.imgur.com/tEvj1Az.png)
+
+Once created, you will have to copy the client secret and client id into the client_id and client_secret environment variables.
