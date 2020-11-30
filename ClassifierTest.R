@@ -1,3 +1,5 @@
+library(rjson)
+
 #Returns the percent accuracy of the classifier on the given test file
 classifier.acc.percent <- function(test.filename = NULL, playlist.genre = NULL){
   if(is.null(test.filename) | is.null(playlist.genre)){
@@ -25,10 +27,13 @@ classifier.acc.percent <- function(test.filename = NULL, playlist.genre = NULL){
 }
 
 my.testCR.filename <- "TestingCR.json"
+print("Classic Rock Accuracy: ")
 print(classifier.acc.percent(test.filename = my.testCR.filename,playlist.genre = "Classic Rock"))
 
+print("Country Accuracy: ")
 my.testCountry.filename <- "TestingCountry.json"
 print(classifier.acc.percent(test.filename = my.testCountry.filename,playlist.genre = "Country"))
 
-my.testCountry.filename <- "TestingClassicdata.json"
-print(classifier.acc.percent(test.filename = my.testCountry.filename,playlist.genre = "Classical"))
+print("Classical Accuracy: ")
+my.testClassical.filename <- "TestingClassicdata.json"
+print(classifier.acc.percent(test.filename = my.testClassical.filename,playlist.genre = "Classical"))
