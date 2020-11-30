@@ -1,10 +1,11 @@
 #file: runner.R
 
+#Libraries
 source(file="playlistDataGrabber.R")
 source(file="getSongData.R")
 source(file="Classifier.R")
 
-
+#Asking the user if they want to go again
 goAgain <- function (){
   cat("\n--------\nWould you like to go again? (y/n): ")
   user.choice <- readline()
@@ -15,6 +16,7 @@ goAgain <- function (){
   }
 }
 
+#The main dialogue 
 mainDialog <- function(){
   cat("Welcome to the Spotify Naive Bayes Classifier! What mode would you like to run? \n 1: Data Grabber \n 2: Song Genre Guesser\n 3: Quit.\n")
   user.mode <- readline("What mode would you like to ")
@@ -39,6 +41,7 @@ mainDialog <- function(){
   return(goAgain())
 }
 
+#Running the two dialogues
 choice <- mainDialog()
 while(choice == 0){
   choice <- mainDialog()
