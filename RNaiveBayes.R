@@ -4,70 +4,132 @@
 # Created on: 11/16/2020
 library(e1071)
 
-trainingCR <- "TrainingCR"
-trainingCountry <- "TrainingCountry"
+generateDF <- function(country, classicRock, classical){
 
-resultCR <- rjson::fromJSON(file = paste(c(trainingCR, ".json"), collapse = ""))
-resultCountry <- rjson::fromJSON(file = paste(c(trainingCountry, ".json"), collapse = ""))
+  resultCR <- rjson::fromJSON(file = paste(c(classicRock, ".json"), collapse = ""))
+  resultCountry <- rjson::fromJSON(file = paste(c(country, ".json"), collapse = ""))
+  resultClassic <- rjson::fromJSON(file = paste(c(classical, ".json"), collapse = ""))
 
-genreCR <- c()
-danceDataCR <- c()
-energyDataCR <- c()
-loudnessDataCR <- c()
-speechinessDataCR <- c()
-acousticnessDataCR <- c()
-livenessDataCR <- c()
-valenceDataCR <- c()
-tempoDataCR <- c()
+  genreCR <- c()
+  danceDataCR <- c()
+  energyDataCR <- c()
+  loudnessDataCR <- c()
+  speechinessDataCR <- c()
+  acousticnessDataCR <- c()
+  livenessDataCR <- c()
+  valenceDataCR <- c()
+  tempoDataCR <- c()
 
-genreCountry <- c()
-danceDataCountry <- c()
-energyDataCountry <- c()
-loudnessDataCountry <- c()
-speechinessDataCountry <- c()
-acousticnessDataCountry <- c()
-livenessDataCountry <- c()
-valenceDataCountry <- c()
-tempoDataCountry <- c()
+  genreCountry <- c()
+  danceDataCountry <- c()
+  energyDataCountry <- c()
+  loudnessDataCountry <- c()
+  speechinessDataCountry <- c()
+  acousticnessDataCountry <- c()
+  livenessDataCountry <- c()
+  valenceDataCountry <- c()
+  tempoDataCountry <- c()
 
-len <- length(resultCR)
+  genreClassic <- c()
+  danceDataClassic <- c()
+  energyDataClassic <- c()
+  loudnessDataClassic <- c()
+  speechinessDataClassic <- c()
+  acousticnessDataClassic <- c()
+  livenessDataClassic <- c()
+  valenceDataClassic <- c()
+  tempoDataClassic <- c()
 
-for(song in resultCR){
-  genreCR <- append(genreCR, "Classic Rock")
-  danceDataCR <- append(danceDataCR, song$dance)
-  energyDataCR <- append(energyDataCR, song$energy)
-  loudnessDataCR <- append(loudnessDataCR, song$loudness)
-  speechinessDataCR <- append(speechinessDataCR, song$speechiness)
-  acousticnessDataCR <- append(acousticnessDataCR, song$acousticness)
-  livenessDataCR <- append(livenessDataCR, song$liveness)
-  valenceDataCR <- append(valenceDataCR, song$valence)
-  tempoDataCR <- append(tempoDataCR, song$tempo)
+  len <- length(resultCR)
+
+  for(song in resultCR){
+    genreCR <- append(genreCR, "ClassicRock")
+    danceDataCR <- append(danceDataCR, song$dance)
+    energyDataCR <- append(energyDataCR, song$energy)
+    loudnessDataCR <- append(loudnessDataCR, song$loudness)
+    speechinessDataCR <- append(speechinessDataCR, song$speechiness)
+    acousticnessDataCR <- append(acousticnessDataCR, song$acousticness)
+    livenessDataCR <- append(livenessDataCR, song$liveness)
+    valenceDataCR <- append(valenceDataCR, song$valence)
+    tempoDataCR <- append(tempoDataCR, song$tempo)
+  }
+
+  for(song in resultCountry){
+    genreCountry <- append(genreCountry, "Country")
+    danceDataCountry <- append(danceDataCountry, song$dance)
+    energyDataCountry <- append(energyDataCountry, song$energy)
+    loudnessDataCountry <- append(loudnessDataCountry, song$loudness)
+    speechinessDataCountry <- append(speechinessDataCountry, song$speechiness)
+    acousticnessDataCountry <- append(acousticnessDataCountry, song$acousticness)
+    livenessDataCountry <- append(livenessDataCountry, song$liveness)
+    valenceDataCountry <- append(valenceDataCountry, song$valence)
+    tempoDataCountry <- append(tempoDataCountry, song$tempo)
+  }
+
+  for(song in resultClassic){
+    genreClassic <- append(genreClassic, "Classical")
+    danceDataClassic <- append(danceDataClassic, song$dance)
+    energyDataClassic <- append(energyDataClassic, song$energy)
+    loudnessDataClassic <- append(loudnessDataClassic, song$loudness)
+    speechinessDataClassic <- append(speechinessDataClassic, song$speechiness)
+    acousticnessDataClassic <- append(acousticnessDataClassic, song$acousticness)
+    livenessDataClassic <- append(livenessDataClassic, song$liveness)
+    valenceDataClassic <- append(valenceDataClassic, song$valence)
+    tempoDataClassic <- append(tempoDataClassic, song$tempo)
+  }
+  df <- data.frame("Genre" = c(genreCR, genreCountry, genreClassic),
+                 "Danceability" = c(danceDataCR, danceDataCountry, danceDataClassic),
+                 "Energy" = c(energyDataCR, energyDataCountry, energyDataClassic),
+                 "Loudness" = c(loudnessDataCR, loudnessDataCountry, loudnessDataClassic),
+                 "Speechiness" = c(speechinessDataCR, speechinessDataCountry, speechinessDataClassic),
+                 "Acousticness" = c(acousticnessDataCR, acousticnessDataCountry, acousticnessDataClassic),
+                 "Liveness" = c(livenessDataCR, livenessDataCountry, livenessDataClassic),
+                 "Valence" = c(valenceDataCR, valenceDataCountry, valenceDataClassic),
+                 "Tempo" = c(tempoDataCR, tempoDataCountry, tempoDataClassic))
+  return(df)
 }
 
-for(song in resultCountry){
-  genreCountry <- append(genreCountry, "Country")
-  danceDataCountry <- append(danceDataCountry, song$dance)
-  energyDataCountry <- append(energyDataCountry, song$energy)
-  loudnessDataCountry <- append(loudnessDataCountry, song$loudness)
-  speechinessDataCountry <- append(speechinessDataCountry, song$speechiness)
-  acousticnessDataCountry <- append(acousticnessDataCountry, song$acousticness)
-  livenessDataCountry <- append(livenessDataCountry, song$liveness)
-  valenceDataCountry <- append(valenceDataCountry, song$valence)
-  tempoDataCountry <- append(tempoDataCountry, song$tempo)
+df <- generateDF("TrainingCountry", "TrainingCR", "TrainingClassicdata")
+testing <- generateDF("TestingCountry", "TestingCR", "TestingClassicdata")
+
+(model <- naiveBayes(Genre ~., data = df))
+r <- predict(model, testing, type = "raw")
+
+results <- c()
+for(i in 1:300){
+  if(r[i] > r[i+300] && r[i] > r[i+600]){
+    results <- append(results, "Classical")
+  }
+  if(r[i+300] > r[i] && r[i+300] > r[i+600]){
+    results <- append(results, "ClassicRock")
+  }
+  if(r[i+600] > r[i+300] && r[i+600] > r[i]){
+    results <- append(results, "Country")
+  }
 }
 
-df <- data.frame("Genre" = c(genreCR, genreCountry), "Danceability" = c(danceDataCR, danceDataCountry), "Energy" = c(energyDataCR, energyDataCountry),
-                 "Loudness" = c(loudnessDataCR, loudnessDataCountry), "Speechiness" = c(speechinessDataCR, speechinessDataCountry),
-                 "Acousticness" = c(acousticnessDataCR, acousticnessDataCountry), "Liveness" = c(livenessDataCR, livenessDataCountry),
-                 "Valence" = c(valenceDataCR, valenceDataCountry), "Tempo" = c(tempoDataCR, tempoDataCountry))
+accuracyCR <- 0
+accuracyCountry <- 0
+accuracyClassical <- 0
 
-# The sample needs to have the same structure as the data frame used for creating the model
-#     Genre, Danceability, Energy, Loudness, Speechiness, Acousticness, Liveness, Valence, Tempo
-sample <- df[sample(1:1000, 10,replace=FALSE),]
+for(i in 1:100){
+  if(results[i] == testing$Genre[i]){
+    accuracyCR <- accuracyCR + 1
+  }
+}
 
-(model <- naiveBayes(Genre ~ ., data = df))
-(predict(model, sample))
-(predict(model, sample, type = "raw"))
-(pred <- predict(model, df))
-table(pred, df$genre)
-print(sample)
+for(i in 101:200){
+  if(results[i] == testing$Genre[i]){
+    accuracyCountry <- accuracyCountry + 1
+  }
+}
+
+for(i in 201:300){
+  if(results[i] == testing$Genre[i]){
+    accuracyClassical <- accuracyClassical + 1
+  }
+}
+
+cat("Classic Rock accuaracy: ", accuracyCR, "\n")
+cat("Country accuaracy: ", accuracyCountry, "\n")
+cat("Classical accuaracy: ", accuracyClassical, "\n")

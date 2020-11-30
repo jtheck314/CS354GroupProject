@@ -1,0 +1,18 @@
+{
+  "danceMean": 0.2655448,
+  "danceStdDev": 0.136914443074516,
+  "energyMean": 0.1380528,
+  "energyStdDev": 0.122992115736036,
+  "loudnessMean": -21.778134,
+  "loudnessStdDev": 7.46118403972139,
+  "speechinessMean": 0.0435772,
+  "speechinessStdDev": 0.0248871166934747,
+  "acousticnessMean": 0.915898,
+  "acousticnessStdDev": 0.133498915789732,
+  "livenessMean": 0.1341446,
+  "livenessStdDev": 0.0926526215895418,
+  "valenceMean": 0.1616776,
+  "valenceStdDev": 0.159076407506236,
+  "tempoMean": 102.315732,
+  "tempoStdDev": 30.732915261542
+}
