@@ -22,7 +22,7 @@ our group used the program RStudio which can be downloaded [here](https://rstudi
 
 ## Project Setup
 Once the program is downloaded, create a project with the exact same file structure as listed above. Once you have done this, simply
-run the runner.R program. Below is a step-by-step guide on how to do this.
+run the runner.R program. Below is a step-by-step guide on how to do this setup for the project.
 
 1. Go to File -> New Project
 ![Step 1](https://i.imgur.com/s08ZTV4.png)
